@@ -319,8 +319,9 @@ or sets failure if otherwise
 */
 const run = async (i, ownerName, repo, id, tagName, createdAt, body, token, webToken, numReleases) => {
     try {
+        console.log("step -1 completed")
         let releaseSha = await getSHA(ownerName, repo, tagName, token);
-
+        console.log("step 0 completed")
         let data
         if ((i+1) >= numReleases){
             data = await getCommitData(ownerName, repo, releaseSha, token, 0);
