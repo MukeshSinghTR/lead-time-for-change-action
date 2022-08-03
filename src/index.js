@@ -327,13 +327,19 @@ const run = async (i, ownerName, repo, id, tagName, createdAt, body, token, webT
         } else {
             data = await getReleaseData(ownerName, repo, releaseSha, token, i + 1);
         }
+        
+        console.log("step 1 completed")
 
         let leadTimeForChange = await getLeadTime(createdAt, data.firstDate, data.numCommits);
+        
+        console.log("step 2 completed")
 
         let badge = `[![Lead Time For Change](https://img.shields.io/static/v1?label=lead%20time%20for%20change&message=${leadTimeForChange}&color=green)](https://shields.io/)`
 
+        console.log("step 3 completed")
         let newBodyDescription = `${badge} \n ${body}`;
         let successfulUpdate = await updateReleaseBody(ownerName, repo, id, token, newBodyDescription);
+        console.log("step 4 completed")
 
         if (successfulUpdate) {
             console.log(`${tagName} release (ID = ${id}) description updated successfully`);
